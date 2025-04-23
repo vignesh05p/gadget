@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMF Gadget Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <h1>IMF Gadget Management</h1>
+        <div class="user-profile" id="userProfile" style="display: none;">
+            <span id="welcomeUser"></span>
+            <button onclick="logout()" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="auth-section" id="authSection">
+            <div class="auth-tabs">
+                <button class="tab-btn active" onclick="switchTab('login')">Login</button>
+                <button class="tab-btn" onclick="switchTab('register')">Register</button>
+            </div>
+            
+            <div id="loginForm" class="auth-form">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="loginUsername" placeholder="Username">
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="loginPassword" placeholder="Password">
+                </div>
+                <button onclick="login()" class="btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </div>
+
+            <div id="registerForm" class="auth-form" style="display: none;">
+                <div class="input-group">
+                    <i class="fas fa-user-plus"></i>
+                    <input type="text" id="registerUsername" placeholder="Username">
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="registerPassword" placeholder="Password">
+                </div>
+                <button onclick="register()" class="btn-primary">
+                    <i class="fas fa-user-plus"></i> Register
+                </button>
+            </div>
+        </div>
+        
+        <div class="main-content" id="mainContent" style="display: none;">
+            <div class="gadget-form">
+                <h2><i class="fas fa-plus-circle"></i> Add New Gadget</h2>
+                <div class="input-group">
+                    <i class="fas fa-microchip"></i>
+                    <input type="text" id="gadgetName" placeholder="Gadget Name">
+                </div>
+                <button onclick="addGadget()" class="btn-primary">
+                    <i class="fas fa-plus"></i> Add Gadget
+                </button>
+            </div>
+
+            <div class="filter-section">
+                <i class="fas fa-filter"></i>
+                <select id="statusFilter" onchange="filterGadgets()">
+                    <option value="">All Status</option>
+                    <option value="Available">Available</option>
+                    <option value="Deployed">Deployed</option>
+                    <option value="Destroyed">Destroyed</option>
+                    <option value="Decommissioned">Decommissioned</option>
+                </select>
+            </div>
+
+            <div class="gadgets-list" id="gadgetsList">
+                <!-- Gadgets will be displayed here -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Custom Popup Dialog -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-content">
+            <h3 id="popupTitle"></h3>
+            <p id="popupMessage"></p>
+            <div class="popup-buttons">
+                <button id="popupConfirm" class="btn-danger">Confirm</button>
+                <button id="popupCancel" class="btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
